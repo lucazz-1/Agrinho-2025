@@ -1,3 +1,10 @@
+function setup() {
+  createCanvas(400, 400);
+}
+
+function draw() {
+  background(220);
+}
 let campos = [];
 let tamanho = 80;
 
@@ -41,7 +48,39 @@ function draw() {
       fill(255, 215, 0);
       ellipse(c.x + 30, c.y + 30, 30, 30);
     }
+  }estado === "plantado") {
+      fill(0, 150, 0);
+      ellipse(c.x + 30, c.y + 30, 20, 20);
+    } else if (c.estado === "crescido") {
+      fill(255, 215, 0);
+      ellipse(c.x + 30, c.y + 30, 30, 30);
+    }
   }
+
+  fill(255);
+  textSize(16);
+  text("Clique para plantar ou colher!", width / 2, 20);
+}
+
+function mousePressed() {
+  for (let c of campos) {
+    if (
+      mouseX > c.x &&
+      mouseX < c.x + tamanho - 10 &&
+      mouseY > c.y &&
+
+      mouseY < c.y + tamanho - 10
+    ) {
+      if (c.estado === "vazio") {
+        c.estado = "plantado";
+        c.tempo = 0;
+      } else if (c.estado === "crescido") {
+        c.estado = "vazio";
+        c.tempo = 0;
+      }
+    }
+  }
+
 
   fill(255);
   textSize(16);
@@ -66,3 +105,4 @@ function mousePressed() {
     }
   }
 }
+
